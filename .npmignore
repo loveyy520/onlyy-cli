@@ -1,0 +1,12 @@
+
+.npmignore
+.gitignore
+
+node_modules
+cc
+
+helpers/generatePage.js
+helpers/generateReadme.js
+helpers/installDeps.js
+helpers/loadCommand.js
+helpers/demo.js
