@@ -14,7 +14,7 @@
     "commit": "yarn addgit & yarn commitgit & yarn pushgit",
     "addgit": "git add .",
     "commitgit": "git commit -m 'something-new'",
-    "pushgit": "git push origin main",
+    "pushgit": "git pull & git push origin main",
     "esbuild": "node ./scripts/esbuildScript.js",
     "backup": "node ./scripts/backupPkg.js",
     "resetpkg": "node ./scripts/resetDevPkg.js",
