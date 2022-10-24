@@ -19,7 +19,8 @@
     "esbuild": "node ./scripts/esbuildScript.js",
     "backup": "node ./scripts/backupPkg.js",
     "resetpkg": "node ./scripts/resetDevPkg.js",
-    "reinstall": "yarn remove onlyy-cli -g & yarn add onlyy-cli -g"
+    "reinstall": "yarn remove onlyy-cli -g & yarn add onlyy-cli -g",
+    "delg": "yarn remove onlyy-cli -g"
   },
   "keywords": [],
   "author": "ChrisLey",
@@ -42,7 +43,6 @@
     "lru-cache": "^7.14.0",
     "minimist": "^1.2.7",
     "nunjucks": "^3.2.3",
-    "onlyy-cli": "^1.0.1-dev-0.0.1",
     "ora": "^6.1.2",
     "request-promise-native": "^1.0.9",
     "semver": "^7.3.8",
