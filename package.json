@@ -1,6 +1,6 @@
 {
   "name": "onlyy-cli",
-  "version": "1.0.1-dev-0.0.4",
+  "version": "1.0.1-dev-0.0.5",
   "description": "quickly create a vue-app",
   "main": "./bin/index.common.js",
   "module": "./bin/index.js",
