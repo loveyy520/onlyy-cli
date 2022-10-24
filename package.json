@@ -1,6 +1,6 @@
 {
   "name": "onlyy-cli",
-  "version": "1.0.1-dev-0.0.1",
+  "version": "1.0.1-dev-0.0.3",
   "description": "quickly create a vue-app",
   "main": "./bin/index.common.js",
   "module": "./bin/index.js",
@@ -10,7 +10,7 @@
     "test": "node ./bin/index.js create cc",
     "build": "node ./scripts/esbuildScript.js & rollup -c",
     "rollup": "rollup -c",
-    "pub": "yarn backup & npm publish & yarn resetpkg",
+    "pub": "yarn backup & npm publish & node ./scripts/resetDevPkg.js",
     "commit": "yarn addgit & yarn commitgit & yarn pushgit",
     "addgit": "git add .",
     "commitgit": "git commit -m 'something-new'",
