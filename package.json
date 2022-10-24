@@ -1,6 +1,6 @@
 {
   "name": "onlyy-cli",
-  "version": "1.0.1-dev-0.0.3",
+  "version": "1.0.1-dev-0.0.4",
   "description": "quickly create a vue-app",
   "main": "./bin/index.common.js",
   "module": "./bin/index.js",
@@ -24,6 +24,8 @@
   "author": "ChrisLey",
   "license": "ISC",
   "devDependencies": {
+    "esbuild": "^0.15.12",
+    "rollup": "^3.2.3",
     "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {
@@ -31,7 +33,6 @@
     "chalk": "^5.1.2",
     "commander": "^9.4.1",
     "download-git-repo": "^3.0.2",
-    "esbuild": "^0.15.12",
     "execa": "^6.1.0",
     "figlet": "^1.5.2",
     "fs-extra": "^10.1.0",
@@ -43,7 +44,6 @@
     "onlyy-cli": "^1.0.1-dev-0.0.1",
     "ora": "^6.1.2",
     "request-promise-native": "^1.0.9",
-    "rollup": "^3.2.3",
     "semver": "^7.3.8",
     "valid-filename": "^4.0.0",
     "validate-npm-package-name": "^5.0.0"
