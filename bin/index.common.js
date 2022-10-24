@@ -74049,15 +74049,16 @@ var axios_default2 = axios_default;
 // helpers/request.js
 var timeout = 6e4;
 var baseURL = "https://api.github.com";
-var repoURL = "/orgs/zhurong-cli/repos";
+var repoURL = "/repos/loveyy520/onlyy-templates/tags";
+var repoName = "onlyy-templates";
 var request = axios_default2.create({
   timeout,
   baseURL
 });
 request.interceptors.request.use((config) => config);
 request.interceptors.response.use((res) => res.data);
-var getRepoList = async () => request.get(repoURL);
-var getTagsByRepo = async (repo) => request.get(`/repos/zhurong-cli/${repo}/tags`);
+var getRepo = () => repoName;
+var getTagsByRepo = async () => request.get(repoURL);
 
 // helpers/loading.js
 var sleep = (n) => new Promise((resolve3) => {
@@ -74081,7 +74082,7 @@ var callWithLoading = async (asyncFn, msg, ...args) => {
 var import_download_git_repo = __toESM(require_download_git_repo(), 1);
 var import_util = require("util");
 var download = async (repo, tag, targetDir) => {
-  const templateURL = `zhurong-cli/${repo}${tag ? "#" + tag : ""}`;
+  const templateURL = `loveyy520/${repo}${tag ? "#" + tag : ""}`;
   console.log(templateURL);
   const download2 = (0, import_util.promisify)(import_download_git_repo.default);
   await callWithLoading(
@@ -75129,11 +75130,12 @@ var Creator = class extends import_events11.default {
     this.targetDir = targetDir;
   }
   async create(options = {}) {
-    this.repo = await this.inquireRepoInfo();
+    this.repo = getRepo();
     this.tag = await this.inquireTagInfo();
     console.log(`You have selected ${source_default.yellow(this.repo, this.tag)}
        as a template.`);
     import_fs_extra2.default.mkdirSync(this.targetDir);
+    console.log(this.repo, this.tag);
     await this.download();
     await this.installDeps();
     this.success();
@@ -75167,11 +75169,6 @@ ${source_default.green("Successfully")} created project ${source_default.cyan(
     );
   }
 };
-var repoInquirerConfig = {
-  name: "repo",
-  type: "list",
-  message: "Please choose a template"
-};
 var tagInquirerConfig = {
   name: "repo",
   type: "list",
@@ -75199,7 +75196,6 @@ var createInfoInquirer = (baseConfig, requestFn) => async (...args) => {
     console.log(source_default.red(e));
   }
 };
-var inquireRepoInfo = createInfoInquirer(repoInquirerConfig, getRepoList);
 var inquireTagInfo = createInfoInquirer(tagInquirerConfig, getTagsByRepo);
 
 // lib/create.js
@@ -75271,7 +75267,6 @@ var validateTargetDir = async (targetDirectory, force) => {
 var import_meta = {};
 var __filename = (0, import_node_url2.fileURLToPath)(import_meta.url);
 var __dirname2 = (0, import_node_path3.dirname)(__filename);
-console.log(__dirname2);
 var pkg = readJson((0, import_path2.resolve)(__dirname2, "../package.json"));
 program.on("--help", () => {
   console.log(

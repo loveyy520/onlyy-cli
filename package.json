@@ -7,7 +7,7 @@
   "type": "module",
   "bin": "bin/main.js",
   "scripts": {
-    "automate": "yarn pub & yarn commit",
+    "automate": "npm run pub & yarn commit",
     "test": "node ./bin/index.js create cc",
     "build": "node ./scripts/esbuildScript.js & rollup -c",
     "rollup": "rollup -c",
