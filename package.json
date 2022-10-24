@@ -39,6 +39,7 @@
     "lru-cache": "^7.14.0",
     "minimist": "^1.2.7",
     "nunjucks": "^3.2.3",
+    "onlyy-cli": "^1.0.1",
     "ora": "^6.1.2",
     "request-promise-native": "^1.0.9",
     "rollup": "^3.2.3",

@@ -3,8 +3,8 @@
 /*
  * @Author: Loveyy 201357337@qq.com
  * @Date: 2022-10-22 19:07:52
- * @LastEditors: Loveyy 201357337@qq.com
- * @LastEditTime: 2022-10-23 13:09:31
+ * @LastEditors: loveyy520 201357337@qq.com
+ * @LastEditTime: 2022-10-24 14:36:41
  * @FilePath: \onlyy-cli\bin\main.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -14,11 +14,11 @@ import chalk from "chalk";
 import figlet from "figlet";
 import minimist from "minimist";
 
-import { read } from "../helpers/index.js";
 import { create } from "../lib/create.js";
+import { readJson } from "../helpers/index.js";
 // console.log(Inquirer);
 
-const pkg = read("./package.json");
+const pkg = readJson("../package.json");
 
 // console.log(program);
 
