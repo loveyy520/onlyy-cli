@@ -3,17 +3,8 @@
 .gitignore
 
 node_modules
+helpers
+lib 
 cc
 
-helpers/generatePage.js
-helpers/generateReadme.js
-helpers/installDeps.js
-helpers/loadCommand.js
-helpers/demo.js
-
 bin/main.js
-
-lib/Creator2.js
-lib/options.js
-lib/page.js
-lib/pageCreator.js
