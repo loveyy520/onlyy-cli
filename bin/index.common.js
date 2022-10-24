@@ -2886,11 +2886,11 @@ var require_universalify = __commonJS({
         if (typeof args[args.length - 1] === "function")
           fn.apply(this, args);
         else {
-          return new Promise((resolve2, reject) => {
+          return new Promise((resolve3, reject) => {
             fn.call(
               this,
               ...args,
-              (err, res) => err != null ? reject(err) : resolve2(res)
+              (err, res) => err != null ? reject(err) : resolve3(res)
             );
           });
         }
@@ -3768,19 +3768,19 @@ var require_fs = __commonJS({
       if (typeof callback === "function") {
         return fs4.exists(filename, callback);
       }
-      return new Promise((resolve2) => {
-        return fs4.exists(filename, resolve2);
+      return new Promise((resolve3) => {
+        return fs4.exists(filename, resolve3);
       });
     };
     exports.read = function(fd, buffer, offset, length, position, callback) {
       if (typeof callback === "function") {
         return fs4.read(fd, buffer, offset, length, position, callback);
       }
-      return new Promise((resolve2, reject) => {
+      return new Promise((resolve3, reject) => {
         fs4.read(fd, buffer, offset, length, position, (err, bytesRead, buffer2) => {
           if (err)
             return reject(err);
-          resolve2({ bytesRead, buffer: buffer2 });
+          resolve3({ bytesRead, buffer: buffer2 });
         });
       });
     };
@@ -3788,11 +3788,11 @@ var require_fs = __commonJS({
       if (typeof args[args.length - 1] === "function") {
         return fs4.write(fd, buffer, ...args);
       }
-      return new Promise((resolve2, reject) => {
+      return new Promise((resolve3, reject) => {
         fs4.write(fd, buffer, ...args, (err, bytesWritten, buffer2) => {
           if (err)
             return reject(err);
-          resolve2({ bytesWritten, buffer: buffer2 });
+          resolve3({ bytesWritten, buffer: buffer2 });
         });
       });
     };
@@ -3801,11 +3801,11 @@ var require_fs = __commonJS({
         if (typeof args[args.length - 1] === "function") {
           return fs4.writev(fd, buffers, ...args);
         }
-        return new Promise((resolve2, reject) => {
+        return new Promise((resolve3, reject) => {
           fs4.writev(fd, buffers, ...args, (err, bytesWritten, buffers2) => {
             if (err)
               return reject(err);
-            resolve2({ bytesWritten, buffers: buffers2 });
+            resolve3({ bytesWritten, buffers: buffers2 });
           });
         });
       };
@@ -5745,14 +5745,14 @@ var require_run_async = __commonJS({
       };
       return function() {
         var args = arguments;
-        var promise = new Promise(function(resolve2, reject) {
+        var promise = new Promise(function(resolve3, reject) {
           var resolved = false;
           const wrappedResolve = function(value) {
             if (resolved) {
               console.warn("Run-async promise already resolved.");
             }
             resolved = true;
-            resolve2(value);
+            resolve3(value);
           };
           var rejected = false;
           const wrappedReject = function(value) {
@@ -6545,7 +6545,7 @@ var require_Observable = __commonJS({
       Observable2.prototype.forEach = function(next, promiseCtor) {
         var _this = this;
         promiseCtor = getPromiseCtor(promiseCtor);
-        return new promiseCtor(function(resolve2, reject) {
+        return new promiseCtor(function(resolve3, reject) {
           var subscriber = new Subscriber_1.SafeSubscriber({
             next: function(value) {
               try {
@@ -6556,7 +6556,7 @@ var require_Observable = __commonJS({
               }
             },
             error: reject,
-            complete: resolve2
+            complete: resolve3
           });
           _this.subscribe(subscriber);
         });
@@ -6578,14 +6578,14 @@ var require_Observable = __commonJS({
       Observable2.prototype.toPromise = function(promiseCtor) {
         var _this = this;
         promiseCtor = getPromiseCtor(promiseCtor);
-        return new promiseCtor(function(resolve2, reject) {
+        return new promiseCtor(function(resolve3, reject) {
           var value;
           _this.subscribe(function(x) {
             return value = x;
           }, function(err) {
             return reject(err);
           }, function() {
-            return resolve2(value);
+            return resolve3(value);
           });
         });
       };
@@ -8735,11 +8735,11 @@ var require_innerFrom = __commonJS({
     "use strict";
     var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve2) {
-          resolve2(value);
+        return value instanceof P ? value : new P(function(resolve3) {
+          resolve3(value);
         });
       }
-      return new (P || (P = Promise))(function(resolve2, reject) {
+      return new (P || (P = Promise))(function(resolve3, reject) {
         function fulfilled(value) {
           try {
             step(generator.next(value));
@@ -8755,7 +8755,7 @@ var require_innerFrom = __commonJS({
           }
         }
         function step(result) {
-          result.done ? resolve2(result.value) : adopt(result.value).then(fulfilled, rejected);
+          result.done ? resolve3(result.value) : adopt(result.value).then(fulfilled, rejected);
         }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
       });
@@ -8845,14 +8845,14 @@ var require_innerFrom = __commonJS({
       }, i);
       function verb(n) {
         i[n] = o[n] && function(v) {
-          return new Promise(function(resolve2, reject) {
-            v = o[n](v), settle2(resolve2, reject, v.done, v.value);
+          return new Promise(function(resolve3, reject) {
+            v = o[n](v), settle2(resolve3, reject, v.done, v.value);
           });
         };
       }
-      function settle2(resolve2, reject, d, v) {
+      function settle2(resolve3, reject, d, v) {
         Promise.resolve(v).then(function(v2) {
-          resolve2({ value: v2, done: d });
+          resolve3({ value: v2, done: d });
         }, reject);
       }
     };
@@ -9479,7 +9479,7 @@ var require_lastValueFrom = __commonJS({
     var EmptyError_1 = require_EmptyError();
     function lastValueFrom(source, config) {
       var hasConfig = typeof config === "object";
-      return new Promise(function(resolve2, reject) {
+      return new Promise(function(resolve3, reject) {
         var _hasValue = false;
         var _value;
         source.subscribe({
@@ -9490,9 +9490,9 @@ var require_lastValueFrom = __commonJS({
           error: reject,
           complete: function() {
             if (_hasValue) {
-              resolve2(_value);
+              resolve3(_value);
             } else if (hasConfig) {
-              resolve2(config.defaultValue);
+              resolve3(config.defaultValue);
             } else {
               reject(new EmptyError_1.EmptyError());
             }
@@ -9514,16 +9514,16 @@ var require_firstValueFrom = __commonJS({
     var Subscriber_1 = require_Subscriber();
     function firstValueFrom(source, config) {
       var hasConfig = typeof config === "object";
-      return new Promise(function(resolve2, reject) {
+      return new Promise(function(resolve3, reject) {
         var subscriber = new Subscriber_1.SafeSubscriber({
           next: function(value) {
-            resolve2(value);
+            resolve3(value);
             subscriber.unsubscribe();
           },
           error: reject,
           complete: function() {
             if (hasConfig) {
-              resolve2(config.defaultValue);
+              resolve3(config.defaultValue);
             } else {
               reject(new EmptyError_1.EmptyError());
             }
@@ -26360,14 +26360,14 @@ var require_async_iterator = __commonJS({
       };
     }
     function readAndResolve(iter) {
-      var resolve2 = iter[kLastResolve];
-      if (resolve2 !== null) {
+      var resolve3 = iter[kLastResolve];
+      if (resolve3 !== null) {
         var data = iter[kStream].read();
         if (data !== null) {
           iter[kLastPromise] = null;
           iter[kLastResolve] = null;
           iter[kLastReject] = null;
-          resolve2(createIterResult(data, false));
+          resolve3(createIterResult(data, false));
         }
       }
     }
@@ -26375,13 +26375,13 @@ var require_async_iterator = __commonJS({
       process.nextTick(readAndResolve, iter);
     }
     function wrapForNext(lastPromise, iter) {
-      return function(resolve2, reject) {
+      return function(resolve3, reject) {
         lastPromise.then(function() {
           if (iter[kEnded]) {
-            resolve2(createIterResult(void 0, true));
+            resolve3(createIterResult(void 0, true));
             return;
           }
-          iter[kHandlePromise](resolve2, reject);
+          iter[kHandlePromise](resolve3, reject);
         }, reject);
       };
     }
@@ -26401,12 +26401,12 @@ var require_async_iterator = __commonJS({
           return Promise.resolve(createIterResult(void 0, true));
         }
         if (this[kStream].destroyed) {
-          return new Promise(function(resolve2, reject) {
+          return new Promise(function(resolve3, reject) {
             process.nextTick(function() {
               if (_this[kError]) {
                 reject(_this[kError]);
               } else {
-                resolve2(createIterResult(void 0, true));
+                resolve3(createIterResult(void 0, true));
               }
             });
           });
@@ -26429,13 +26429,13 @@ var require_async_iterator = __commonJS({
       return this;
     }), _defineProperty(_Object$setPrototypeO, "return", function _return() {
       var _this2 = this;
-      return new Promise(function(resolve2, reject) {
+      return new Promise(function(resolve3, reject) {
         _this2[kStream].destroy(null, function(err) {
           if (err) {
             reject(err);
             return;
           }
-          resolve2(createIterResult(void 0, true));
+          resolve3(createIterResult(void 0, true));
         });
       });
     }), _Object$setPrototypeO), AsyncIteratorPrototype);
@@ -26457,15 +26457,15 @@ var require_async_iterator = __commonJS({
         value: stream3._readableState.endEmitted,
         writable: true
       }), _defineProperty(_Object$create, kHandlePromise, {
-        value: function value(resolve2, reject) {
+        value: function value(resolve3, reject) {
           var data = iterator[kStream].read();
           if (data) {
             iterator[kLastPromise] = null;
             iterator[kLastResolve] = null;
             iterator[kLastReject] = null;
-            resolve2(createIterResult(data, false));
+            resolve3(createIterResult(data, false));
           } else {
-            iterator[kLastResolve] = resolve2;
+            iterator[kLastResolve] = resolve3;
             iterator[kLastReject] = reject;
           }
         },
@@ -26484,12 +26484,12 @@ var require_async_iterator = __commonJS({
           iterator[kError] = err;
           return;
         }
-        var resolve2 = iterator[kLastResolve];
-        if (resolve2 !== null) {
+        var resolve3 = iterator[kLastResolve];
+        if (resolve3 !== null) {
           iterator[kLastPromise] = null;
           iterator[kLastResolve] = null;
           iterator[kLastReject] = null;
-          resolve2(createIterResult(void 0, true));
+          resolve3(createIterResult(void 0, true));
         }
         iterator[kEnded] = true;
       });
@@ -26504,7 +26504,7 @@ var require_async_iterator = __commonJS({
 var require_from2 = __commonJS({
   "node_modules/bl/node_modules/readable-stream/lib/internal/streams/from.js"(exports, module2) {
     "use strict";
-    function asyncGeneratorStep(gen, resolve2, reject, _next, _throw, key, arg) {
+    function asyncGeneratorStep(gen, resolve3, reject, _next, _throw, key, arg) {
       try {
         var info = gen[key](arg);
         var value = info.value;
@@ -26513,7 +26513,7 @@ var require_from2 = __commonJS({
         return;
       }
       if (info.done) {
-        resolve2(value);
+        resolve3(value);
       } else {
         Promise.resolve(value).then(_next, _throw);
       }
@@ -26521,13 +26521,13 @@ var require_from2 = __commonJS({
     function _asyncToGenerator(fn) {
       return function() {
         var self2 = this, args = arguments;
-        return new Promise(function(resolve2, reject) {
+        return new Promise(function(resolve3, reject) {
           var gen = fn.apply(self2, args);
           function _next(value) {
-            asyncGeneratorStep(gen, resolve2, reject, _next, _throw, "next", value);
+            asyncGeneratorStep(gen, resolve3, reject, _next, _throw, "next", value);
           }
           function _throw(err) {
-            asyncGeneratorStep(gen, resolve2, reject, _next, _throw, "throw", err);
+            asyncGeneratorStep(gen, resolve3, reject, _next, _throw, "throw", err);
           }
           _next(void 0);
         });
@@ -51199,11 +51199,11 @@ var require_util = __commonJS({
           if (files.indexOf("node_modules") !== -1 || files.indexOf("package.json") !== -1) {
             return name2;
           }
-          const dirname = path3.dirname(name2);
-          if (dirname === name2) {
+          const dirname2 = path3.dirname(name2);
+          if (dirname2 === name2) {
             return original;
           }
-          return find(dirname, original);
+          return find(dirname2, original);
         } catch (err) {
           if (name2 === original) {
             if (err.code === "ENOENT") {
@@ -56411,11 +56411,11 @@ var require_decompress_tar = __commonJS({
           cb();
         });
       });
-      const promise = new Promise((resolve2, reject) => {
+      const promise = new Promise((resolve3, reject) => {
         if (!Buffer.isBuffer(input)) {
           input.on("error", reject);
         }
-        extract.on("finish", () => resolve2(files));
+        extract.on("finish", () => resolve3(files));
         extract.on("error", reject);
       });
       extract.then = promise.then.bind(promise);
@@ -58846,7 +58846,7 @@ var require_pinkie = __commonJS({
     }
     function invokeResolver(resolver, promise) {
       function resolvePromise(value) {
-        resolve2(promise, value);
+        resolve3(promise, value);
       }
       function rejectPromise(reason) {
         reject(promise, reason);
@@ -58873,7 +58873,7 @@ var require_pinkie = __commonJS({
       }
       if (!handleThenable(promise, value)) {
         if (settled === FULFILLED) {
-          resolve2(promise, value);
+          resolve3(promise, value);
         }
         if (settled === REJECTED) {
           reject(promise, value);
@@ -58895,7 +58895,7 @@ var require_pinkie = __commonJS({
                 if (value === val) {
                   fulfill(promise, val);
                 } else {
-                  resolve2(promise, val);
+                  resolve3(promise, val);
                 }
               }
             }, function(reason) {
@@ -58915,7 +58915,7 @@ var require_pinkie = __commonJS({
       }
       return false;
     }
-    function resolve2(promise, value) {
+    function resolve3(promise, value) {
       if (promise === value || !handleThenable(promise, value)) {
         fulfill(promise, value);
       }
@@ -58995,7 +58995,7 @@ var require_pinkie = __commonJS({
       if (!Array.isArray(promises)) {
         throw new TypeError("You must pass an array to Promise.all().");
       }
-      return new Promise2(function(resolve3, reject2) {
+      return new Promise2(function(resolve4, reject2) {
         var results = [];
         var remaining = 0;
         function resolver(index) {
@@ -59003,7 +59003,7 @@ var require_pinkie = __commonJS({
           return function(value) {
             results[index] = value;
             if (!--remaining) {
-              resolve3(results);
+              resolve4(results);
             }
           };
         }
@@ -59016,7 +59016,7 @@ var require_pinkie = __commonJS({
           }
         }
         if (!remaining) {
-          resolve3(results);
+          resolve4(results);
         }
       });
     };
@@ -59024,13 +59024,13 @@ var require_pinkie = __commonJS({
       if (!Array.isArray(promises)) {
         throw new TypeError("You must pass an array to Promise.race().");
       }
-      return new Promise2(function(resolve3, reject2) {
+      return new Promise2(function(resolve4, reject2) {
         for (var i = 0, promise; i < promises.length; i++) {
           promise = promises[i];
           if (promise && typeof promise.then === "function") {
-            promise.then(resolve3, reject2);
+            promise.then(resolve4, reject2);
           } else {
-            resolve3(promise);
+            resolve4(promise);
           }
         }
       });
@@ -59039,12 +59039,12 @@ var require_pinkie = __commonJS({
       if (value && typeof value === "object" && value.constructor === Promise2) {
         return value;
       }
-      return new Promise2(function(resolve3) {
-        resolve3(value);
+      return new Promise2(function(resolve4) {
+        resolve4(value);
       });
     };
     Promise2.reject = function(reason) {
-      return new Promise2(function(resolve3, reject2) {
+      return new Promise2(function(resolve4, reject2) {
         reject2(reason);
       });
     };
@@ -59192,7 +59192,7 @@ var require_get_stream = __commonJS({
       var maxBuffer = opts.maxBuffer;
       var stream3;
       var clean;
-      var p = new Promise2(function(resolve2, reject) {
+      var p = new Promise2(function(resolve3, reject) {
         stream3 = bufferStream(opts);
         inputStream.once("error", error);
         inputStream.pipe(stream3);
@@ -59202,7 +59202,7 @@ var require_get_stream = __commonJS({
           }
         });
         stream3.once("error", error);
-        stream3.on("end", resolve2);
+        stream3.on("end", resolve3);
         clean = function() {
           if (inputStream.unpipe) {
             inputStream.unpipe(stream3);
@@ -59241,7 +59241,7 @@ var require_pify = __commonJS({
         for (var i = 0; i < arguments.length; i++) {
           args[i] = arguments[i];
         }
-        return new P(function(resolve2, reject) {
+        return new P(function(resolve3, reject) {
           args.push(function(err, result) {
             if (err) {
               reject(err);
@@ -59250,9 +59250,9 @@ var require_pify = __commonJS({
               for (var i2 = 1; i2 < arguments.length; i2++) {
                 results[i2 - 1] = arguments[i2];
               }
-              resolve2(results);
+              resolve3(results);
             } else {
-              resolve2(result);
+              resolve3(result);
             }
           });
           fn.apply(that, args);
@@ -60665,7 +60665,7 @@ var require_decompress_unzip = __commonJS({
         throw err;
       });
     };
-    var extractFile = (zip) => new Promise((resolve2, reject) => {
+    var extractFile = (zip) => new Promise((resolve3, reject) => {
       const files = [];
       zip.readEntry();
       zip.on("entry", (entry) => {
@@ -60675,7 +60675,7 @@ var require_decompress_unzip = __commonJS({
         });
       });
       zip.on("error", reject);
-      zip.on("end", () => resolve2(files));
+      zip.on("end", () => resolve3(files));
     });
     module2.exports = () => (buf) => {
       if (!Buffer.isBuffer(buf)) {
@@ -60699,7 +60699,7 @@ var require_pify2 = __commonJS({
       for (let i = 0; i < arguments.length; i++) {
         args[i] = arguments[i];
       }
-      return new P((resolve2, reject) => {
+      return new P((resolve3, reject) => {
         if (opts.errorFirst) {
           args.push(function(err, result) {
             if (opts.multiArgs) {
@@ -60711,12 +60711,12 @@ var require_pify2 = __commonJS({
                 results.unshift(err);
                 reject(results);
               } else {
-                resolve2(results);
+                resolve3(results);
               }
             } else if (err) {
               reject(err);
             } else {
-              resolve2(result);
+              resolve3(result);
             }
           });
         } else {
@@ -60726,9 +60726,9 @@ var require_pify2 = __commonJS({
               for (let i = 0; i < arguments.length; i++) {
                 results[i] = arguments[i];
               }
-              resolve2(results);
+              resolve3(results);
             } else {
-              resolve2(result);
+              resolve3(result);
             }
           });
         }
@@ -60846,7 +60846,7 @@ var require_pify3 = __commonJS({
         for (var i = 0; i < arguments.length; i++) {
           args[i] = arguments[i];
         }
-        return new P(function(resolve2, reject) {
+        return new P(function(resolve3, reject) {
           args.push(function(err, result) {
             if (err) {
               reject(err);
@@ -60855,9 +60855,9 @@ var require_pify3 = __commonJS({
               for (var i2 = 1; i2 < arguments.length; i2++) {
                 results[i2 - 1] = arguments[i2];
               }
-              resolve2(results);
+              resolve3(results);
             } else {
-              resolve2(result);
+              resolve3(result);
             }
           });
           fn.apply(that, args);
@@ -61235,7 +61235,7 @@ var require_get_stream2 = __commonJS({
       const maxBuffer = opts.maxBuffer;
       let stream3;
       let clean;
-      const p = new Promise((resolve2, reject) => {
+      const p = new Promise((resolve3, reject) => {
         const error = (err) => {
           if (err) {
             err.bufferedData = stream3.getBufferedValue();
@@ -61251,7 +61251,7 @@ var require_get_stream2 = __commonJS({
           }
         });
         stream3.once("error", error);
-        stream3.on("end", resolve2);
+        stream3.on("end", resolve3);
         clean = () => {
           if (inputStream.unpipe) {
             inputStream.unpipe(stream3);
@@ -63101,9 +63101,9 @@ var require_p_cancelable = __commonJS({
       static fn(userFn) {
         return function() {
           const args = [].slice.apply(arguments);
-          return new PCancelable((resolve2, reject, onCancel) => {
+          return new PCancelable((resolve3, reject, onCancel) => {
             args.push(onCancel);
-            userFn.apply(null, args).then(resolve2, reject);
+            userFn.apply(null, args).then(resolve3, reject);
           });
         };
       }
@@ -63111,12 +63111,12 @@ var require_p_cancelable = __commonJS({
         this._cancelHandlers = [];
         this._isPending = true;
         this._isCanceled = false;
-        this._promise = new Promise((resolve2, reject) => {
+        this._promise = new Promise((resolve3, reject) => {
           this._reject = reject;
           return executor(
             (value) => {
               this._isPending = false;
-              resolve2(value);
+              resolve3(value);
             },
             (error) => {
               this._isPending = false;
@@ -63171,11 +63171,11 @@ var require_p_finally = __commonJS({
       onFinally = onFinally || (() => {
       });
       return promise.then(
-        (val) => new Promise((resolve2) => {
-          resolve2(onFinally());
+        (val) => new Promise((resolve3) => {
+          resolve3(onFinally());
         }).then(() => val),
-        (err) => new Promise((resolve2) => {
-          resolve2(onFinally());
+        (err) => new Promise((resolve3) => {
+          resolve3(onFinally());
         }).then(() => {
           throw err;
         })
@@ -63195,14 +63195,14 @@ var require_p_timeout = __commonJS({
         this.name = "TimeoutError";
       }
     };
-    module2.exports = (promise, ms, fallback2) => new Promise((resolve2, reject) => {
+    module2.exports = (promise, ms, fallback2) => new Promise((resolve3, reject) => {
       if (typeof ms !== "number" || ms < 0) {
         throw new TypeError("Expected `ms` to be a positive number");
       }
       const timer = setTimeout(() => {
         if (typeof fallback2 === "function") {
           try {
-            resolve2(fallback2());
+            resolve3(fallback2());
           } catch (err2) {
             reject(err2);
           }
@@ -63216,7 +63216,7 @@ var require_p_timeout = __commonJS({
         reject(err);
       }, ms);
       pFinally(
-        promise.then(resolve2, reject),
+        promise.then(resolve3, reject),
         () => {
           clearTimeout(timer);
         }
@@ -63661,7 +63661,7 @@ var require_got = __commonJS({
     function asPromise(opts) {
       const timeoutFn = (requestPromise) => opts.gotTimeout && opts.gotTimeout.request ? pTimeout(requestPromise, opts.gotTimeout.request, new got.RequestError({ message: "Request timed out", code: "ETIMEDOUT" }, opts)) : requestPromise;
       const proxy = new EventEmitter4();
-      const cancelable = new PCancelable((resolve2, reject, onCancel) => {
+      const cancelable = new PCancelable((resolve3, reject, onCancel) => {
         const ee = requestAsEventEmitter(opts);
         let cancelOnRequest = false;
         onCancel(() => {
@@ -63699,7 +63699,7 @@ var require_got = __commonJS({
             if (opts.throwHttpErrors && statusCode !== 304 && (statusCode < 200 || statusCode > limitStatusCode)) {
               throw new got.HTTPError(statusCode, res.statusMessage, res.headers, opts);
             }
-            resolve2(res);
+            resolve3(res);
           }).catch((err) => {
             Object.defineProperty(err, "response", { value: res });
             reject(err);
@@ -63944,7 +63944,7 @@ var require_p_event = __commonJS({
     var normalizeEvents = (event) => Array.isArray(event) ? event : [event];
     var multiple = (emitter, event, options) => {
       let cancel;
-      const ret = new Promise((resolve2, reject) => {
+      const ret = new Promise((resolve3, reject) => {
         options = Object.assign({
           rejectionEvents: ["error"],
           multiArgs: false,
@@ -63964,7 +63964,7 @@ var require_p_event = __commonJS({
           items.push(value);
           if (options.count === items.length) {
             cancel();
-            resolve2(items);
+            resolve3(items);
           }
         };
         const rejectHandler = (error) => {
@@ -63986,7 +63986,7 @@ var require_p_event = __commonJS({
           addListener(rejectionEvent, rejectHandler);
         }
         if (options.resolveImmediately) {
-          resolve2(items);
+          resolve3(items);
         }
       });
       ret.cancel = cancel;
@@ -64050,8 +64050,8 @@ var require_p_event = __commonJS({
         isLimitReached = eventCount === limit;
         const value = options.multiArgs ? args : args[0];
         if (nextQueue.length > 0) {
-          const { resolve: resolve2 } = nextQueue.shift();
-          resolve2({ done: false, value });
+          const { resolve: resolve3 } = nextQueue.shift();
+          resolve3({ done: false, value });
           if (isLimitReached) {
             cancel();
           }
@@ -64074,8 +64074,8 @@ var require_p_event = __commonJS({
           removeListener(resolutionEvent, resolveHandler);
         }
         while (nextQueue.length > 0) {
-          const { resolve: resolve2 } = nextQueue.shift();
-          resolve2({ done: true, value: void 0 });
+          const { resolve: resolve3 } = nextQueue.shift();
+          resolve3({ done: true, value: void 0 });
         }
       };
       const rejectHandler = (...args) => {
@@ -64094,8 +64094,8 @@ var require_p_event = __commonJS({
           return;
         }
         if (nextQueue.length > 0) {
-          const { resolve: resolve2 } = nextQueue.shift();
-          resolve2({ done: true, value });
+          const { resolve: resolve3 } = nextQueue.shift();
+          resolve3({ done: true, value });
         } else {
           valueQueue.push(value);
         }
@@ -64126,7 +64126,7 @@ var require_p_event = __commonJS({
           if (done) {
             return Promise.resolve({ done: true, value: void 0 });
           }
-          return new Promise((resolve2, reject) => nextQueue.push({ resolve: resolve2, reject }));
+          return new Promise((resolve3, reject) => nextQueue.push({ resolve: resolve3, reject }));
         },
         return(value) {
           cancel();
@@ -67749,12 +67749,12 @@ var require_isexe = __commonJS({
         if (typeof Promise !== "function") {
           throw new TypeError("callback not provided");
         }
-        return new Promise(function(resolve2, reject) {
+        return new Promise(function(resolve3, reject) {
           isexe(path3, options || {}, function(er, is) {
             if (er) {
               reject(er);
             } else {
-              resolve2(is);
+              resolve3(is);
             }
           });
         });
@@ -67818,27 +67818,27 @@ var require_which = __commonJS({
         opt = {};
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
       const found = [];
-      const step = (i) => new Promise((resolve2, reject) => {
+      const step = (i) => new Promise((resolve3, reject) => {
         if (i === pathEnv.length)
-          return opt.all && found.length ? resolve2(found) : reject(getNotFoundError(cmd));
+          return opt.all && found.length ? resolve3(found) : reject(getNotFoundError(cmd));
         const ppRaw = pathEnv[i];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
         const pCmd = path3.join(pathPart, cmd);
         const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
-        resolve2(subStep(p, i, 0));
+        resolve3(subStep(p, i, 0));
       });
-      const subStep = (p, i, ii) => new Promise((resolve2, reject) => {
+      const subStep = (p, i, ii) => new Promise((resolve3, reject) => {
         if (ii === pathExt.length)
-          return resolve2(step(i + 1));
+          return resolve3(step(i + 1));
         const ext = pathExt[ii];
         isexe(p + ext, { pathExt: pathExtExe }, (er, is) => {
           if (!er && is) {
             if (opt.all)
               found.push(p + ext);
             else
-              return resolve2(p + ext);
+              return resolve3(p + ext);
           }
-          return resolve2(subStep(p, i, ii + 1));
+          return resolve3(subStep(p, i, ii + 1));
         });
       });
       return cb ? step(0).then((res) => cb(null, res), cb) : step(0);
@@ -68220,7 +68220,7 @@ var require_get_stream3 = __commonJS({
       };
       const { maxBuffer } = options;
       const stream4 = bufferStream(options);
-      await new Promise((resolve2, reject) => {
+      await new Promise((resolve3, reject) => {
         const rejectPromise = (error) => {
           if (error && stream4.getBufferedLength() <= BufferConstants.MAX_LENGTH) {
             error.bufferedData = stream4.getBufferedValue();
@@ -68230,7 +68230,7 @@ var require_get_stream3 = __commonJS({
         (async () => {
           try {
             await streamPipelinePromisified(inputStream, stream4);
-            resolve2();
+            resolve3();
           } catch (error) {
             rejectPromise(error);
           }
@@ -68781,6 +68781,9 @@ var source_default = chalk2;
 // bin/main.js
 var import_figlet = __toESM(require_node_figlet(), 1);
 var import_minimist = __toESM(require_minimist(), 1);
+var import_node_path3 = require("node:path");
+var import_node_url2 = require("node:url");
+var import_path2 = require("path");
 
 // lib/create.js
 var import_path = require("path");
@@ -70267,9 +70270,9 @@ var Prompt = class {
     this.screen = new ScreenManager(this.rl);
   }
   run() {
-    return new Promise((resolve2, reject) => {
+    return new Promise((resolve3, reject) => {
       this._run(
-        (value) => resolve2(value),
+        (value) => resolve3(value),
         (error) => reject(error)
       );
     });
@@ -72222,10 +72225,10 @@ function formDataToJSON(formData) {
 var formDataToJSON_default = formDataToJSON;
 
 // node_modules/axios/lib/core/settle.js
-function settle(resolve2, reject, response) {
+function settle(resolve3, reject, response) {
   const validateStatus2 = response.config.validateStatus;
   if (!response.status || !validateStatus2 || validateStatus2(response.status)) {
-    resolve2(response);
+    resolve3(response);
   } else {
     reject(new AxiosError_default(
       "Request failed with status code " + response.status,
@@ -72859,7 +72862,7 @@ function httpAdapter(config) {
       }
       isRejected ? rejectPromise(value) : resolvePromise(value);
     }
-    const resolve2 = function resolve3(value) {
+    const resolve3 = function resolve4(value) {
       done(value);
     };
     const reject = function reject2(value) {
@@ -72881,7 +72884,7 @@ function httpAdapter(config) {
     if (protocol === "data:") {
       let convertedData;
       if (method !== "GET") {
-        return settle(resolve2, reject, {
+        return settle(resolve3, reject, {
           status: 405,
           statusText: "method not allowed",
           headers: {},
@@ -72903,7 +72906,7 @@ function httpAdapter(config) {
       } else if (responseType === "stream") {
         convertedData = import_stream2.default.Readable.from(convertedData);
       }
-      return settle(resolve2, reject, {
+      return settle(resolve3, reject, {
         data: convertedData,
         status: 200,
         statusText: "OK",
@@ -73089,7 +73092,7 @@ function httpAdapter(config) {
       };
       if (responseType === "stream") {
         response.data = responseStream;
-        settle(resolve2, reject, response);
+        settle(resolve3, reject, response);
       } else {
         const responseBuffer = [];
         let totalResponseBytes = 0;
@@ -73138,7 +73141,7 @@ function httpAdapter(config) {
           } catch (err) {
             reject(AxiosError_default.from(err, null, config, response.request, response));
           }
-          settle(resolve2, reject, response);
+          settle(resolve3, reject, response);
         });
       }
       emitter.once("abort", (err) => {
@@ -73306,7 +73309,7 @@ function progressEventReducer(listener, isDownloadStream) {
   };
 }
 function xhrAdapter(config) {
-  return new Promise(function dispatchXhrRequest(resolve2, reject) {
+  return new Promise(function dispatchXhrRequest(resolve3, reject) {
     let requestData = config.data;
     const requestHeaders = AxiosHeaders_default.from(config.headers).normalize();
     const responseType = config.responseType;
@@ -73348,7 +73351,7 @@ function xhrAdapter(config) {
         request: request2
       };
       settle(function _resolve(value) {
-        resolve2(value);
+        resolve3(value);
         done();
       }, function _reject(err) {
         reject(err);
@@ -73915,8 +73918,8 @@ var CancelToken = class {
       throw new TypeError("executor must be a function.");
     }
     let resolvePromise;
-    this.promise = new Promise(function promiseExecutor(resolve2) {
-      resolvePromise = resolve2;
+    this.promise = new Promise(function promiseExecutor(resolve3) {
+      resolvePromise = resolve3;
     });
     const token = this;
     this.promise.then((cancel) => {
@@ -73930,9 +73933,9 @@ var CancelToken = class {
     });
     this.promise.then = (onfulfilled) => {
       let _resolve;
-      const promise = new Promise((resolve2) => {
-        token.subscribe(resolve2);
-        _resolve = resolve2;
+      const promise = new Promise((resolve3) => {
+        token.subscribe(resolve3);
+        _resolve = resolve3;
       }).then(onfulfilled);
       promise.cancel = function reject() {
         token.unsubscribe(_resolve);
@@ -74057,8 +74060,8 @@ var getRepoList = async () => request.get(repoURL);
 var getTagsByRepo = async (repo) => request.get(`/repos/zhurong-cli/${repo}/tags`);
 
 // helpers/loading.js
-var sleep = (n) => new Promise((resolve2) => {
-  setTimeout(resolve2, n * 1e3);
+var sleep = (n) => new Promise((resolve3) => {
+  setTimeout(resolve3, n * 1e3);
 });
 var callWithLoading = async (asyncFn, msg, ...args) => {
   const spinner = ora(msg);
@@ -74737,7 +74740,7 @@ var setupTimeout = (spawned, { timeout: timeout2, killSignal = "SIGTERM" }, spaw
     return spawnedPromise;
   }
   let timeoutId;
-  const timeoutPromise = new Promise((resolve2, reject) => {
+  const timeoutPromise = new Promise((resolve3, reject) => {
     timeoutId = setTimeout(() => {
       timeoutKill(spawned, killSignal, reject);
     }, timeout2);
@@ -74845,9 +74848,9 @@ var mergePromise = (spawned, promise) => {
   }
   return spawned;
 };
-var getSpawnedPromise = (spawned) => new Promise((resolve2, reject) => {
+var getSpawnedPromise = (spawned) => new Promise((resolve3, reject) => {
   spawned.on("exit", (exitCode, signal) => {
-    resolve2({ exitCode, signal });
+    resolve3({ exitCode, signal });
   });
   spawned.on("error", (error) => {
     reject(error);
@@ -75087,7 +75090,7 @@ var createPkgmgrAction = (action) => {
   };
 };
 var executeCommand = (command, args, targetDir) => {
-  return new Promise((resolve2, reject) => {
+  return new Promise((resolve3, reject) => {
     progress.enabled = false;
     const child = execa(command, args, {
       cwd: targetDir,
@@ -75112,7 +75115,7 @@ var executeCommand = (command, args, targetDir) => {
         reject(`command failed: ${command} ${args.join(" ")}`);
         return;
       }
-      resolve2();
+      resolve3();
     });
   });
 };
@@ -75265,7 +75268,11 @@ var validateTargetDir = async (targetDirectory, force) => {
 };
 
 // bin/main.js
-var pkg = readJson("../package.json");
+var import_meta = {};
+var __filename = (0, import_node_url2.fileURLToPath)(import_meta.url);
+var __dirname2 = (0, import_node_path3.dirname)(__filename);
+console.log(__dirname2);
+var pkg = readJson((0, import_path2.resolve)(__dirname2, "../package.json"));
 program.on("--help", () => {
   console.log(
     "\n" + source_default.cyanBright.bold(
