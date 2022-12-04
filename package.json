@@ -1,11 +1,13 @@
 {
   "name": "onlyy-cli",
-  "version": "1.0.1-dev-0.0.6",
+  "version": "1.0.1-dev-0.0.7",
   "description": "quickly create a vue-app",
   "main": "./bin/index.common.js",
   "module": "./bin/index.js",
   "type": "module",
-  "bin": "bin/main.js",
+  "bin": {
+    "onlyy": "bin/main.js"
+  },
   "scripts": {
     "automate": "npm run pub & yarn commit",
     "test": "node ./bin/index.js create cc",
@@ -43,6 +45,7 @@
     "lru-cache": "^7.14.0",
     "minimist": "^1.2.7",
     "nunjucks": "^3.2.3",
+    "onlyy-cli": "^1.0.1-dev-0.0.6",
     "ora": "^6.1.2",
     "request-promise-native": "^1.0.9",
     "semver": "^7.3.8",
